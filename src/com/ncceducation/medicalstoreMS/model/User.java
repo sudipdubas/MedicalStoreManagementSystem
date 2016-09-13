@@ -5,11 +5,12 @@
  */
 package com.ncceducation.medicalstoreMS.model;
 
-import java.io.Serializable;
+import com.ncceducation.medicalstoreMS.Controller.Controller;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 /**
  *
@@ -17,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity 
 @Table(name="user_details")
-public class User implements Serializable {
+public class User {
     @Id @GeneratedValue
     private int id;
     private String first_name;
@@ -98,8 +99,7 @@ public class User implements Serializable {
     public String getContact_no() {
         return contact_no;
     }
-
-    /**
+        /**
      * @param contact_no the contact_no to set
      */
     public void setContact_no(String contact_no) {
@@ -109,6 +109,7 @@ public class User implements Serializable {
     /**
      * @return the username
      */
+    
     public String getUsername() {
         return username;
     }
@@ -134,5 +135,17 @@ public class User implements Serializable {
         this.password = password;
     }
    
+    public int getNewID(){
+        Controller c=new Controller();
+        return(c.getMaxId());
+    }
+    
+    
+    public boolean save(){
+        Controller c1=new Controller();
+        return(c1.insertRecord(this));
+    }
+    
     
 }
+    
