@@ -5,14 +5,23 @@
  */
 package com.ncceducation.medicalstoreMS.model;
 
+import com.ncceducation.medicalstoreMS.Controller.SupplierController;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author G50
  */
+@Entity
+@Table(name="supplier_detail")
 public class Supplier {
-    
+    @Id @GeneratedValue
     private int id;
-    private String full_name;
+    private String first_name;
+    private String last_name;
     private String contact_no;
     private String email;
     private String address;
@@ -31,21 +40,7 @@ public class Supplier {
         this.id = id;
     }
 
-    /**
-     * @return the full_name
-     */
-    public String getFull_name() {
-        return full_name;
-    }
-
-    /**
-     * @param full_name the full_name to set
-     */
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
-    }
-
-    /**
+     /**
      * @return the contact_no
      */
     public String getContact_no() {
@@ -85,6 +80,50 @@ public class Supplier {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /**
+     * @return the first_name
+     */
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    /**
+     * @param first_name the first_name to set
+     */
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    /**
+     * @return the last_name
+     */
+    public String getLast_name() {
+        return last_name;
+    }
+
+    /**
+     * @param last_name the last_name to set
+     */
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public boolean saveSupplier() {
+  SupplierController sc=new SupplierController();
+  return (sc.saveSupplier(this));
+    }
+
+   
+    public boolean updateSupplier() {
+         SupplierController sc=new SupplierController();
+  return (sc.updateSupplier(this));
+    }
+
+    public boolean deleteSupplier() {
+       SupplierController sc=new SupplierController();
+  return (sc.deleteSupplier(this));
     }
     
     

@@ -20,9 +20,9 @@ import org.hibernate.cfg.Configuration;
  *
  * @author G50
  */
-public final class Controller{
+public final class UsersController{
      private static SessionFactory factory;
-        public Controller() {
+        public UsersController() {
         try {
             factory = this.getSession();
         } catch (HibernateException ex) {
@@ -32,7 +32,7 @@ public final class Controller{
 
  
     
-    
+    //This method retrievers maximum id from database and returns to the form page
      public int getMaxId()
     {
         Session session=this.openSession();
@@ -57,7 +57,9 @@ public final class Controller{
             
         }
             return value;
-    } public boolean insertRecord(User user) {
+    } 
+     //THis functions receives details of user and Saves it to database
+     public boolean insertRecord(User user) {
         Session session = this.openSession();
         Transaction tx = null;
         boolean result=false;
@@ -77,27 +79,7 @@ public final class Controller{
         }
         return result;
     }
-     /* public void updateUser(int id, String contactNo, String firstName, String lastName, String email) {
-        Session session = this.openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            StudentEntity se = (StudentEntity) session.get(StudentEntity.class, id);
-            se.setContactNo(contactNo);
-            se.setEmail(email);
-            se.setFirstName(firstName);
-            se.setLastName(lastName);
-            session.update(se);
-            tx.commit();
-        } catch (HibernateException ex) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            System.out.println(ex.getMessage());
-        } finally {
-            session.close();
-        }
-    }*/
+//This functions takes id from user and Search value from the database of this id and returns all the values
     public User Search(int u)
     {
         Session session=this.openSession();
@@ -135,6 +117,7 @@ public final class Controller{
         } 
         return usr;    
     }
+    //This functions takes user id and deletes information from the database
         public boolean DeleteUser(User u) {
         Session session = this.openSession();
         boolean con=false;
@@ -158,7 +141,7 @@ public final class Controller{
         return con;
     }
              
-             
+             //This functions updates the value of particular user into database
                public boolean updateUser(User u) {
         Session session = this.openSession();
         boolean ret=false;

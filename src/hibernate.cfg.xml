@@ -39,5 +39,6 @@
 		<!-- <mapping class="com.santosh.hibernate.mapping.manytoone.College" />
 		<mapping class="com.santosh.hibernate.mapping.manytoone.Student" /> -->
 		<mapping class="com.ncceducation.medicalstoreMS.model.User" />
+                <mapping class="com.ncceducation.medicalstoreMS.model.Supplier" />
 	</session-factory>
 </hibernate-configuration>

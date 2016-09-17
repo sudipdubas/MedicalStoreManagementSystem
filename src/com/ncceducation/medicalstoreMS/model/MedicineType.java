@@ -5,6 +5,8 @@
  */
 package com.ncceducation.medicalstoreMS.model;
 
+import com.ncceducation.medicalstoreMS.Controller.MedicineController;
+
 /**
  *
  * @author G50
@@ -39,6 +41,12 @@ public class MedicineType {
      */
     public void setDescription(String Description) {
         this.Description = Description;
+    }
+
+    public boolean save() {
+        MedicineController mc=new MedicineController();
+        return(mc.save(this));
+        
     }
     
     

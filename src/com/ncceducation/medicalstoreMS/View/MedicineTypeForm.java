@@ -5,16 +5,19 @@
  */
 package com.ncceducation.medicalstoreMS.View;
 
+import com.ncceducation.medicalstoreMS.model.MedicineType;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author G50
  */
-public class MedicineType extends javax.swing.JFrame {
+public class MedicineTypeForm extends javax.swing.JFrame {
 
     /**
      * Creates new form MedicineType
      */
-    public MedicineType() {
+    public MedicineTypeForm() {
         initComponents();
     }
 
@@ -48,6 +51,11 @@ public class MedicineType extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtdescription);
 
         btnsubmit.setText("Submit");
+        btnsubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsubmitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +108,20 @@ public class MedicineType extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
+MedicineType mp=new MedicineType();
+mp.setTypeName(this.txtmedicinetype.getText());
+mp.setDescription(this.txtdescription.getText());
+boolean check=mp.save();
+if(check==true){
+    JOptionPane.showMessageDialog(null,"Saved Successfully");
+}
+else{JOptionPane.showMessageDialog(null,"Save failed");}
+      
+
+
+    }//GEN-LAST:event_btnsubmitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -117,20 +139,21 @@ public class MedicineType extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MedicineType.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MedicineTypeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MedicineType.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MedicineTypeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MedicineType.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MedicineTypeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MedicineType.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MedicineTypeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MedicineType().setVisible(true);
+                new MedicineTypeForm().setVisible(true);
             }
         });
     }

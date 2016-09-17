@@ -5,7 +5,7 @@
  */
 package com.ncceducation.medicalstoreMS.model;
 
-import com.ncceducation.medicalstoreMS.Controller.Controller;
+import com.ncceducation.medicalstoreMS.Controller.UsersController;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -158,30 +158,31 @@ public class User{
     public void setPassword(String password) {
         this.password = password;
     }
-   
+   //This fucntions returns maximum id number from the database
     public int getNewID(){
-        Controller c=new Controller();
+        UsersController c=new UsersController();
         return(c.getMaxId());
     }
     
-    
+    //This functions take the users information and saves it to database and returns boolean value
     public boolean save(){
-        Controller c1=new Controller();
+        UsersController c1=new UsersController();
         return(c1.insertRecord(this));
     }
-   
+   //This function deletes user from the database and returns boolean value
     public boolean DeleteUser(){
-            Controller d=new Controller();
+            UsersController d=new UsersController();
    return( d.DeleteUser(this));
     
 }
+    //THis function updates users information and return boolean value
     public boolean updateUser(){
-              Controller d=new Controller();
+              UsersController d=new UsersController();
               return(d.updateUser(this));
     }
-
+//Funtion to search the value of partucular user using user id
     public User Search(int parseInt) {
-       Controller db = new Controller();
+       UsersController db = new UsersController();
         return (db.Search(parseInt));
     }
     
