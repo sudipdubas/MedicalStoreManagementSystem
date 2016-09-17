@@ -9,6 +9,7 @@ import com.ncceducation.medicalstoreMS.model.User;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +20,7 @@ import org.hibernate.cfg.Configuration;
  *
  * @author G50
  */
-public class Controller{
+public final class Controller{
      private static SessionFactory factory;
         public Controller() {
         try {
@@ -76,6 +77,115 @@ public class Controller{
         }
         return result;
     }
+     /* public void updateUser(int id, String contactNo, String firstName, String lastName, String email) {
+        Session session = this.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            StudentEntity se = (StudentEntity) session.get(StudentEntity.class, id);
+            se.setContactNo(contactNo);
+            se.setEmail(email);
+            se.setFirstName(firstName);
+            se.setLastName(lastName);
+            session.update(se);
+            tx.commit();
+        } catch (HibernateException ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(ex.getMessage());
+        } finally {
+            session.close();
+        }
+    }*/
+    public User Search(int u)
+    {
+        Session session=this.openSession();
+        Transaction tx=null;
+          User usr=new User();
+        try
+        {
+           
+            tx=session.beginTransaction();
+           // Query query = session.getNamedQuery("getbyid")
+//.setString("stockCode", "1");
+            
+           // Query query=session.getNamedQuery("getbyid");
+            //query.setParameter(0, 1);
+             User se = (User) session.get(User.class,u);
+             Query qu=session.createQuery("from user_details where id=u");
+            List user=qu.list();
+           
+            
+            for (Iterator iterator = user.iterator(); iterator.hasNext();) {
+                User us = (User) iterator.next();
+               
+                usr.setFirst_name(us.getFirst_name());
+               usr.setLast_name(us.getLast_name());
+               usr.setContact_no(us.getContact_no());
+               usr.setAddress(us.getAddress());
+               usr.setUsername(us.getUsername());
+               usr.setPassword(us.getPassword());
+            }
+        }catch (HibernateException ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(ex.getMessage());
+        } 
+        return usr;    
+    }
+        public boolean DeleteUser(User u) {
+        Session session = this.openSession();
+        boolean con=false;
+        Transaction tx = null;
+        try {
+            tx=session.beginTransaction();
+            User se=(User) session.get(User.class,u.getId());
+            session.delete(se);
+            tx.commit();
+            con=true;
+
+        } catch (HibernateException ex) {
+            if (tx != null) {
+                tx.rollback();
+                con=false;
+            }
+            System.out.println(ex.getMessage());
+        } finally {
+            
+        }
+        return con;
+    }
+             
+             
+               public boolean updateUser(User u) {
+        Session session = this.openSession();
+        boolean ret=false;
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            User se = (User) session.get(User.class,u.getId());
+           se.setFirst_name(u.getFirst_name());
+           se.setLast_name(u.getLast_name());
+           se.setAddress(u.getAddress());
+           se.setContact_no(u.getContact_no());
+           se.setUsername(u.getUsername());
+           se.setPassword(u.getPassword());
+           //session.update(u);
+           ret=true;         
+           tx.commit();
+        } catch (HibernateException ex) {
+            if (tx != null) {
+                tx.rollback();
+                ret=false;
+            }
+            System.out.println(ex.getMessage());
+        } finally {
+            session.close();
+        }
+        return ret;
+    }
      
      
 
@@ -87,5 +197,7 @@ public class Controller{
         return factory.openSession();
     }
     
-    
+       public Session closeSession() {
+        return this.closeSession();
+    }
 }

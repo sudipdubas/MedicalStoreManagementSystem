@@ -9,16 +9,31 @@ import com.ncceducation.medicalstoreMS.Controller.Controller;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
 
 /**
  *
  * @author sudip dubas
  */
-@Entity 
+
+@NamedNativeQueries({
+	@NamedNativeQuery(
+	name = "getbyid",
+	query = "from user_details s where s.id= :stockCode",
+        resultClass=User.class
+       
+	)
+})
+
+
+
+@Entity
+//@NamedQuery(name="getbyid", query="from user_details where id=???")
 @Table(name="user_details")
-public class User {
+public class User{
     @Id @GeneratedValue
     private int id;
     private String first_name;
@@ -54,6 +69,8 @@ public class User {
     /**
      * @return the first_name
      */
+   // @NotEmpty
+    
     public String getFirst_name() {
         return first_name;
     }
@@ -68,6 +85,8 @@ public class User {
     /**
      * @return the last_name
      */
+   // @NotEmpty
+    
     public String getLast_name() {
         return last_name;
     }
@@ -82,6 +101,7 @@ public class User {
     /**
      * @return the address
      */
+   // @NotEmpty
     public String getAddress() {
         return address;
     }
@@ -96,6 +116,7 @@ public class User {
     /**
      * @return the contact_no
      */
+    //@NotEmpty
     public String getContact_no() {
         return contact_no;
     }
@@ -108,8 +129,11 @@ public class User {
 
     /**
      * @return the username
-     */
-    
+     
+    @NotEmpty
+    @Length(min=5, max=10)
+    @Id
+    @Column(name="username", unique=true,nullable=false, length=255)*/
     public String getUsername() {
         return username;
     }
@@ -145,7 +169,21 @@ public class User {
         Controller c1=new Controller();
         return(c1.insertRecord(this));
     }
+   
+    public boolean DeleteUser(){
+            Controller d=new Controller();
+   return( d.DeleteUser(this));
     
+}
+    public boolean updateUser(){
+              Controller d=new Controller();
+              return(d.updateUser(this));
+    }
+
+    public User Search(int parseInt) {
+       Controller db = new Controller();
+        return (db.Search(parseInt));
+    }
     
 }
     
