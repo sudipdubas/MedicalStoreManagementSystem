@@ -36,9 +36,16 @@
 		<!--<property name="hbm2ddl.auto">create</property>-->
 		<!-- <property name="hbm2ddl.auto">create-drop</property> -->
 		 <property name="hbm2ddl.auto">update</property>
+                 
 		<!-- <mapping class="com.santosh.hibernate.mapping.manytoone.College" />
 		<mapping class="com.santosh.hibernate.mapping.manytoone.Student" /> -->
 		<mapping class="com.ncceducation.medicalstoreMS.model.User" />
                 <mapping class="com.ncceducation.medicalstoreMS.model.Supplier" />
+                <mapping class="com.ncceducation.medicalstoreMS.model.Customer" />
+               <mapping class="com.ncceducation.medicalstoreMS.model.Medicine" />
+                  <mapping class="com.ncceducation.medicalstoreMS.model.MedicineType" />
+                    <mapping class="com.ncceducation.medicalstoreMS.model.Sales" />
+             
+             
 	</session-factory>
 </hibernate-configuration>

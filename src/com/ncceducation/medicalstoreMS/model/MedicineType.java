@@ -6,15 +6,23 @@
 package com.ncceducation.medicalstoreMS.model;
 
 import com.ncceducation.medicalstoreMS.Controller.MedicineController;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author G50
  */
+@Entity 
+ @Table(name="medicine_type")
 public class MedicineType {
+    @Id @GeneratedValue
+    private int type_id;
     private String typeName;
     private String Description;
-
+   
     /**
      * @return the typeName
      */
@@ -48,9 +56,23 @@ public class MedicineType {
         return(mc.save(this));
         
     }
+
+    /**
+     * @return the type_id
+     */
+    public int getType_id() {
+        return type_id;
+    }
+
+    /**
+     * @param type_id the type_id to set
+     */
+    public void setType_id(int type_id) {
+        this.type_id = type_id;
+    }
     
     
-    
+   
     
     
     

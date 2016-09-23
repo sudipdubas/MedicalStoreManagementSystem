@@ -5,12 +5,20 @@
  */
 package com.ncceducation.medicalstoreMS.model;
 
+import com.ncceducation.medicalstoreMS.Controller.CustomerController;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author G50
  */
+@Entity
+@Table(name="customer")
 public class Customer {
-    
+    @Id @GeneratedValue
     private int customer_id;
     private String customer_name;
     private String contact_no;
@@ -55,6 +63,11 @@ public class Customer {
      */
     public void setContact_no(String contact_no) {
         this.contact_no = contact_no;
+    }
+
+    public boolean saveCustomer() {
+CustomerController cc=new CustomerController();
+return(cc.saveCustomer(this));
     }
     
 }

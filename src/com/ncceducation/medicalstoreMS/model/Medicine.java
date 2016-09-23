@@ -195,4 +195,9 @@ MedicineController d=new MedicineController();
     MedicineController db=new MedicineController();
     return(db.getValues());
 }
+
+  public int Find(String s) {
+MedicineController md=new MedicineController()   ;
+return(md.Find(s));
+        }
 }

@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -41,13 +40,16 @@ public final class UsersController{
         try
         {
             tx=session.beginTransaction();
-            String sql="Select max(id) from userdetail";
-            SQLQuery query=session.createSQLQuery(sql);
-            query.addEntity(User.class);
-            List us=query.list();
-             value=(Integer)us.get(0);
-           
-           
+             Query query = session.createSQLQuery(
+                "select a.max(id) from user_details a")
+                .addEntity(User.class);
+                      List user=query.list();
+           for (Iterator iterator = user.iterator(); iterator.hasNext();) {
+               User us = (User) iterator.next();
+          value=(Integer)us.getId();
+           }
+     
+          
         }catch (HibernateException ex) {
             if (tx != null) {
                 tx.rollback();
@@ -95,14 +97,21 @@ public final class UsersController{
            // Query query=session.getNamedQuery("getbyid");
             //query.setParameter(0, 1);
              User se = (User) session.get(User.class,u);
-             Query qu=session.createQuery("from user_details where id=u");
-            List user=qu.list();
+            // Query qu=session.createQuery("from user_details where id=:u");
+            Query query = session.createSQLQuery(
+"select * from user_details s where s.id = :stockCode")
+.addEntity(User.class)
+.setParameter("stockCode", u);
+List result = query.list();
+            List user=query.list();
            
             
             for (Iterator iterator = user.iterator(); iterator.hasNext();) {
                 User us = (User) iterator.next();
-               
+               usr.setId(us.getId());
                 usr.setFirst_name(us.getFirst_name());
+                        System.out.println(us.getFirst_name());
+
                usr.setLast_name(us.getLast_name());
                usr.setContact_no(us.getContact_no());
                usr.setAddress(us.getAddress());

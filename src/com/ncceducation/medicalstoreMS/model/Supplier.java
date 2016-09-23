@@ -6,6 +6,8 @@
 package com.ncceducation.medicalstoreMS.model;
 
 import com.ncceducation.medicalstoreMS.Controller.SupplierController;
+import com.ncceducation.medicalstoreMS.Controller.UsersController;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -125,6 +127,15 @@ public class Supplier {
        SupplierController sc=new SupplierController();
   return (sc.deleteSupplier(this));
     }
+
+    public Supplier Search(int a) {
+        SupplierController db = new SupplierController();
+        return (db.Search(a));    }
+
     
-    
+     public ArrayList<Supplier>getAllValues()
+    {
+    SupplierController db=new SupplierController();
+    return(db.getAllValues());
+}
 }

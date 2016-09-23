@@ -42,6 +42,7 @@ public class User{
    private String contact_no;
    private String username;
    private String password;
+   private String repassword;
 
     /**
      * @return the id
@@ -181,9 +182,23 @@ public class User{
               return(d.updateUser(this));
     }
 //Funtion to search the value of partucular user using user id
-    public User Search(int parseInt) {
+    public User Search(int a) {
        UsersController db = new UsersController();
-        return (db.Search(parseInt));
+        return (db.Search(a));
+    }
+
+    /**
+     * @return the repassword
+     */
+    public String getRepassword() {
+        return repassword;
+    }
+
+    /**
+     * @param repassword the repassword to set
+     */
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
     }
     
 }
