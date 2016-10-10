@@ -29,58 +29,68 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="55" pref="55" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="149" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="105" max="-2" attributes="0"/>
+                      <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
+                      <Component id="txtusername" min="-2" pref="162" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" pref="105" max="-2" attributes="0"/>
+                      <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
+                      <Component id="txtpassword" min="-2" pref="162" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="33" pref="33" max="-2" attributes="0"/>
+                      <Component id="btnsubmit" min="-2" pref="82" max="-2" attributes="0"/>
+                      <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
+                      <Component id="btncancel" min="-2" pref="102" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="65" pref="65" max="-2" attributes="0"/>
                       <Component id="lblmessage" min="-2" pref="272" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnsubmit" alignment="1" min="-2" pref="82" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel2" pref="105" max="32767" attributes="0"/>
-                              <Component id="jLabel3" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtpassword" pref="162" max="32767" attributes="0"/>
-                          <Component id="txtusername" max="32767" attributes="0"/>
-                          <Component id="btncancel" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="75" pref="75" max="-2" attributes="0"/>
+                      <Component id="invalidUserLabel" min="-2" pref="227" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="63" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel2" min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="txtusername" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel3" max="32767" attributes="0"/>
-                  <Component id="txtpassword" pref="33" max="32767" attributes="0"/>
+              <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                      <Component id="txtpassword" min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnsubmit" min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="btncancel" max="32767" attributes="0"/>
+                  <Component id="btncancel" min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Component id="lblmessage" min="-2" pref="22" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+              <Component id="invalidUserLabel" min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,8 +133,6 @@
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtusernameFocusGained"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtpassword">
-    </Component>
     <Component class="javax.swing.JButton" name="btnsubmit">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -148,6 +156,16 @@
           <Color blue="ff" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cancel"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtpassword">
+    </Component>
+    <Component class="javax.swing.JLabel" name="invalidUserLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Username or Password does not match!!"/>
       </Properties>
     </Component>
   </SubComponents>

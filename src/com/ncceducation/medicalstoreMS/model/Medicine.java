@@ -10,6 +10,7 @@ import com.ncceducation.medicalstoreMS.Controller.SupplierController;
 import com.ncceducation.medicalstoreMS.Controller.UsersController;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -153,7 +154,13 @@ public class Medicine {
     public void setManufature_date(String manufature_date) {
         this.manufature_date = manufature_date;
     }
-
+    
+public String getManufature_date(){
+    return manufature_date;
+}
+public String getExpire_date(){
+    return expire_date;
+}
     /**
      * @param expire_date the expire_date to set
      */
@@ -176,6 +183,11 @@ public class Medicine {
     public boolean updateMedicine() {
 MedicineController d=new MedicineController();
               return(d.updateMedicine(this));    }
+     
+    public boolean updateStock() {
+MedicineController d=new MedicineController();
+              return(d.updateStock(this)); 
+    }
 
     /**
      * @return the price
@@ -200,4 +212,18 @@ MedicineController d=new MedicineController();
 MedicineController md=new MedicineController()   ;
 return(md.Find(s));
         }
+
+    public void deductMedicine(int val) {
+MedicineController md=new MedicineController();
+md.reduceMedicine(this,val);    }
+
+    public List<Medicine> viewAllMedicines() {
+MedicineController  vcs=new MedicineController();
+return(vcs.getAll()); 
+    }
+
+    public List<Medicine> viewDates() {
+MedicineController  vcs=new MedicineController();
+return(vcs.getDate());     }
+
 }

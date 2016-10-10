@@ -7,7 +7,9 @@ package com.ncceducation.medicalstoreMS.Controller;
 
 import com.ncceducation.medicalstoreMS.model.Medicine;
 import com.ncceducation.medicalstoreMS.model.Sales;
+import com.ncceducation.medicalstoreMS.model.Supplier;
 import com.ncceducation.medicalstoreMS.model.User;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -153,7 +155,50 @@ return usr;    }
         }
         return con;
     }
-}
+
+    public List<Sales> viewAllSales() {
+Session session=this.openSession();
+        Transaction tx=null;
+          Sales usr=new Sales();
+          List <Sales>user=new ArrayList<>();
+        try
+        {
+           
+            tx=session.beginTransaction();
+       
+             
+            Query query = session.createSQLQuery(
+"select * from sales s where s.sales_id>0").addEntity(Sales.class);
+
+List result = query.list();
+            user=query.list();
+           
+              
+            for (Iterator iterator = user.iterator(); iterator.hasNext();) {
+                Sales us = (Sales) iterator.next();
+               usr.setSales_id(us.getSales_id());
+                usr.setMedicine_id(us.getMedicine_id());
+                        
+                
+                
+              
+
+               usr.setCustomer_name((us.getCustomer_name()));
+               usr.setQuantity(us.getQuantity());
+               usr.setTotal_price(us.getTotal_price());
+               
+             
+            }
+        }catch (HibernateException ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(ex.getMessage());
+        } 
+     
+    return user;
+}       }
+
 
 
 

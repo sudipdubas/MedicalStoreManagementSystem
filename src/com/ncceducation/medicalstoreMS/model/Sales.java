@@ -5,8 +5,8 @@
  */
 package com.ncceducation.medicalstoreMS.model;
 
-import com.ncceducation.medicalstoreMS.Controller.MedicineController;
 import com.ncceducation.medicalstoreMS.Controller.SalesController;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -135,5 +135,10 @@ SalesController d=new SalesController();
    return( d.DeleteSales(this));
 }    
 
+    public List<Sales> viewAllSales() {
+SalesController cs=new SalesController();
+return(cs.viewAllSales());    }
+
+    
 
 }

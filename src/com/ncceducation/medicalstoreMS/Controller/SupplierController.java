@@ -197,9 +197,54 @@ List result = query.list();
         }
           return(result);   
     }
+
+    public List<Supplier> viewAllSuppliers() {
+Session session=this.openSession();
+        Transaction tx=null;
+          User usr=new User();
+          List <Supplier>user=new ArrayList<>();
+        try
+        {
+           
+            tx=session.beginTransaction();
+       
+             
+            Query query = session.createSQLQuery(
+"select * from supplier_detail s where s.id>0").addEntity(Supplier.class);
+
+List result = query.list();
+            user=query.list();
+           
+              
+            for (Iterator iterator = user.iterator(); iterator.hasNext();) {
+                Supplier us = (Supplier) iterator.next();
+               usr.setId(us.getId());
+                usr.setFirst_name(us.getFirst_name());
+                        
+                
+                
+                System.out.println(us.getFirst_name());
+
+               usr.setLast_name(us.getLast_name());
+               usr.setAddress(us.getAddress());
+               usr.setContact_no(us.getContact_no());
+               
+               usr.setUsername(us.getEmail());
+       
+            }
+        }catch (HibernateException ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(ex.getMessage());
+        } 
+     
+    return user;
+}   
+}
       
 
     
 
    
-}
+

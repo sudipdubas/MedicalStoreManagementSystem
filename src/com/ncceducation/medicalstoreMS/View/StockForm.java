@@ -8,6 +8,7 @@ package com.ncceducation.medicalstoreMS.View;
 import com.ncceducation.medicalstoreMS.model.Medicine;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,7 +41,7 @@ public class StockForm extends javax.swing.JFrame {
         cmbmedicinename = new javax.swing.JComboBox<>();
         txtquantity = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Medicine Stock update");
@@ -54,6 +55,11 @@ public class StockForm extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 255));
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 0, 0));
@@ -113,6 +119,21 @@ public class StockForm extends javax.swing.JFrame {
     private void cmbmedicinenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbmedicinenameActionPerformed
        // TODO add your handling code here:
     }//GEN-LAST:event_cmbmedicinenameActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Medicine u=new Medicine();
+
+u.setMedicine_name(String.valueOf(cmbmedicinename.getSelectedItem()));
+
+
+u.setQuantity(Integer.parseInt(txtquantity.getText()));
+
+boolean check=u.updateStock();
+if(check==true){
+    JOptionPane.showMessageDialog(null,"Update Successfully");
+}
+else{JOptionPane.showMessageDialog(null,"Update failed");}          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 public void Runn(){
   
            ArrayList<Medicine> allpages = new ArrayList();

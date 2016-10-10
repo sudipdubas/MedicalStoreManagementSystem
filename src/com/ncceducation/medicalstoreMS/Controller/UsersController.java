@@ -5,7 +5,11 @@
  */
 package com.ncceducation.medicalstoreMS.Controller;
 
+import static com.ncceducation.medicalstoreMS.View.Dashboard.usr;
+import com.ncceducation.medicalstoreMS.model.Medicine;
+import com.ncceducation.medicalstoreMS.model.Supplier;
 import com.ncceducation.medicalstoreMS.model.User;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -37,18 +41,22 @@ public final class UsersController{
         Session session=this.openSession();
         Transaction tx=null;
         int value=0;
+        User usr=new User();
         try
         {
             tx=session.beginTransaction();
              Query query = session.createSQLQuery(
-                "select a.max(id) from user_details a")
+                "select max(id) from user_details ")
                 .addEntity(User.class);
-                      List user=query.list();
-           for (Iterator iterator = user.iterator(); iterator.hasNext();) {
-               User us = (User) iterator.next();
-          value=(Integer)us.getId();
-           }
-     
+             List user=query.list();
+        for (Iterator iterator = user.iterator(); iterator.hasNext();) {          
+            User us = (User) iterator.next();
+            usr.setId(us.getId());
+            
+           
+       
+         }
+   
           
         }catch (HibernateException ex) {
             if (tx != null) {
@@ -89,19 +97,15 @@ public final class UsersController{
           User usr=new User();
         try
         {
-           
-            tx=session.beginTransaction();
-           // Query query = session.getNamedQuery("getbyid")
-//.setString("stockCode", "1");
-            
-           // Query query=session.getNamedQuery("getbyid");
-            //query.setParameter(0, 1);
+         tx=session.beginTransaction();
+
              User se = (User) session.get(User.class,u);
-            // Query qu=session.createQuery("from user_details where id=:u");
+      
             Query query = session.createSQLQuery(
-"select * from user_details s where s.id = :stockCode")
+"select * from user_details s where s.id= :stockCode")
 .addEntity(User.class)
 .setParameter("stockCode", u);
+            session.save(se);
 List result = query.list();
             List user=query.list();
            
@@ -192,4 +196,118 @@ List result = query.list();
        public Session closeSession() {
         return this.closeSession();
     }
+
+    public User Login(User u) {
+Session session=this.openSession();
+        Transaction tx=null;
+          User usr=new User();
+        try
+        {
+           
+            tx=session.beginTransaction();
+            Query query = session.createSQLQuery(
+"select * from user_details s where s.username= :uname and s.password=:upass")
+.addEntity(User.class)
+                    .setParameter("uname", u.getUsername())
+.setParameter("upass", u.getPassword());
+
+            List user=query.list();
+            if(user.isEmpty())
+            {
+                return usr=null;
+            }
+            else{
+            for (Iterator iterator = user.iterator(); iterator.hasNext();) {
+                User us = (User) iterator.next();
+               usr.setId(us.getId());
+                usr.setFirst_name(us.getFirst_name());
+                usr.setUsername(us.getUsername());
+               usr.setPassword(us.getPassword());
+               
+            }}
+        }catch (HibernateException ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(ex.getMessage());
+        } 
+        return usr;       
+    }
+
+    public boolean updatePassword(User u) {
+     
+        Session session = this.openSession();
+        boolean ret=false;
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+           Query query = session.createSQLQuery("update user_details set password = :docname" + " where username = :docId");
+query.setParameter("docname",u.getPassword());
+query.setParameter("docId",u.getUsername());
+int result = query.executeUpdate();
+           
+           
+        int s=query.executeUpdate();
+           //session.update(se);
+           ret=true;         
+           tx.commit();
+        } catch (HibernateException ex) {
+            if (tx != null) {
+                tx.rollback();
+                ret=false;
+            }
+            System.out.println(ex.getMessage());
+        } finally {
+            session.close();
+        }
+        return ret;
+    }
+
+    public List<User> ViewAllUser(User u) {
+           
+ Session session=this.openSession();
+        Transaction tx=null;
+          User usr=new User();
+          List <User>user=new ArrayList<>();
+        try
+        {
+           
+            tx=session.beginTransaction();
+       
+             
+            Query query = session.createSQLQuery(
+"select * from user_details s where s.id>0").addEntity(User.class);
+
+List result = query.list();
+            user=query.list();
+           
+              
+            for (Iterator iterator = user.iterator(); iterator.hasNext();) {
+                User us = (User) iterator.next();
+               usr.setId(us.getId());
+                usr.setFirst_name(us.getFirst_name());
+                        
+                
+                
+                System.out.println(us.getFirst_name());
+
+               usr.setLast_name(us.getLast_name());
+               usr.setAddress(us.getAddress());
+               usr.setContact_no(us.getContact_no());
+               
+               usr.setUsername(us.getUsername());
+       
+            }
+        }catch (HibernateException ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(ex.getMessage());
+        } 
+     
+    return user;
+}
+
+
+  
 }

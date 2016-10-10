@@ -6,33 +6,18 @@
 package com.ncceducation.medicalstoreMS.model;
 
 import com.ncceducation.medicalstoreMS.Controller.UsersController;
-import javax.persistence.Entity;
+import java.util.List;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
  *
  * @author sudip dubas
  */
 
-@NamedNativeQueries({
-	@NamedNativeQuery(
-	name = "getbyid",
-	query = "from user_details s where s.id= :stockCode",
-        resultClass=User.class
-       
-	)
-})
 
-
-
-@Entity
-//@NamedQuery(name="getbyid", query="from user_details where id=???")
-@Table(name="user_details")
+@javax.persistence.Entity
+@javax.persistence.Table(name = "user_details")
 public class User{
     @Id @GeneratedValue
     private int id;
@@ -44,17 +29,19 @@ public class User{
    private String password;
    private String repassword;
 
+ 
+
     /**
      * @return the id
      */
-   public void User(int id, String first_name, String last_name, String address, String contact_no, String username, String password){
+  public void User(int id, String first_name, String last_name, String address, String contact_no, String username, String password){
  this.id=id;
  this.first_name=first_name;
  this.last_name=last_name;
  this.address=address;
  this.contact_no=contact_no;
  this.username=username;
- this.password=password;
+this.password=password;
    }
     public int getId() {
         return id;
@@ -200,6 +187,21 @@ public class User{
     public void setRepassword(String repassword) {
         this.repassword = repassword;
     }
+
+    public User Login() {
+    UsersController db = new UsersController();
+        return (db.Login(this));    }
     
+ public boolean updatePassword(){
+     UsersController us=new UsersController();
+     return(us.updatePassword(this));
+     
+ }   
+
+   public List<User> ViewAllUser() {
+        UsersController db = new UsersController();
+        return (db.ViewAllUser(this));
+    }
+
 }
     

@@ -6,6 +6,7 @@
 package com.ncceducation.medicalstoreMS.model;
 
 import com.ncceducation.medicalstoreMS.Controller.MedicineController;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -70,6 +71,10 @@ public class MedicineType {
     public void setType_id(int type_id) {
         this.type_id = type_id;
     }
+
+    public List<MedicineType> viewAllMedicinesTypes() {
+MedicineController cs=new MedicineController();
+return(cs.viewAllMedicineTypes());    }
     
     
    

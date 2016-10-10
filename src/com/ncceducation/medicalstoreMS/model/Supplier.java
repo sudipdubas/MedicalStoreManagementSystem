@@ -8,6 +8,7 @@ package com.ncceducation.medicalstoreMS.model;
 import com.ncceducation.medicalstoreMS.Controller.SupplierController;
 import com.ncceducation.medicalstoreMS.Controller.UsersController;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -138,4 +139,8 @@ public class Supplier {
     SupplierController db=new SupplierController();
     return(db.getAllValues());
 }
+
+    public List<Supplier> ViewAllSuppliers() {
+SupplierController csv=new SupplierController();
+return(csv.viewAllSuppliers());    }
 }

@@ -55,7 +55,7 @@ public class SalesForm extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txttotalprice = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Medicine Sales Form");
@@ -275,6 +275,7 @@ public void Runn(){
 }
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
 Sales u=new Sales();
+Medicine md=new Medicine();
  
         if(this.txtcustomername.getText()==""||this.cmbmedicine.getSelectedItem()==""||txtcontact.getText()==""||txtquantity.getText()==""||txttotalprice.getText()=="")
 {
@@ -287,7 +288,7 @@ u.setContact_no(this.txtcontact.getText());
 u.setMedicine_id(String.valueOf(this.cmbmedicine.getSelectedItem()));
 
 u.setQuantity(Integer.parseInt(this.txtquantity.getText()));
-
+md.setMedicine_name(String.valueOf(this.cmbmedicine.getSelectedItem()));
 
 u.setTotal_price(Integer.parseInt(this.txttotalprice.getText()));
 /*
@@ -303,9 +304,11 @@ error+=constraintViolation.getPropertyPath()+"" + constraintViolation.getMessage
 }
 
 else*/
-
+int val=Integer.parseInt(this.txtquantity.getText());
 
         boolean s=u.save();
+        md.deductMedicine(val);
+        
 if(s==true){
    JOptionPane.showMessageDialog(null,"Recored saved successfylly!!");
    txtsalesid.setText("");

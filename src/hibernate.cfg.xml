@@ -45,7 +45,7 @@
                <mapping class="com.ncceducation.medicalstoreMS.model.Medicine" />
                   <mapping class="com.ncceducation.medicalstoreMS.model.MedicineType" />
                     <mapping class="com.ncceducation.medicalstoreMS.model.Sales" />
-             
+            
              
 	</session-factory>
 </hibernate-configuration>
